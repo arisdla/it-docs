@@ -64,10 +64,14 @@ const config: Config = {
           path: 'docs',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: './src/css/custom.scss',
         },
       } satisfies Preset.Options,
     ],
+  ],
+
+  plugins: [
+    'docusaurus-plugin-sass',
   ],
 
   themeConfig: {
@@ -104,7 +108,7 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} IT Docs by aris.la. Built with Docusaurus.`,
+      copyright: `${new Date().getFullYear()} IT Docs by aris.la. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
