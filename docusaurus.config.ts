@@ -58,7 +58,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/arisdla/it-docs/edit/main/',
+            'https://github.com/arisdla/it-docs/blob/main/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
           path: 'docs',
