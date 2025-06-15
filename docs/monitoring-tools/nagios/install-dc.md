@@ -202,7 +202,7 @@ htpasswd /opt/nagios/etc/htpasswd.users newuser
 
 Delete unwanted user in `/opt/nagios/etc/htpasswd.users`
 
-### **Contacts and Contact Groups**
+### Contacts and Contact Groups
 
 #### Define contacts and groupes
 
