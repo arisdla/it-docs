@@ -1,0 +1,71 @@
+---
+sidebar_position: 30
+---
+import DocCardList from '@theme/DocCardList';
+
+# Centreon
+
+[centreon.com](https://centreon.com/)
+
+
+## Core structure
+
+| Component                 | Role/Description                                                                                                 |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Centreon Web UI**       | Web interface for configuration, visualization, and management                                                   |
+| **Centreon Engine**       | Monitoring engine (forked/enhanced Nagios core)                                                                  |
+| **Centreon Broker**       | High-performance event/data processor (handles results, logs, perfdata, DB writes)                               |
+| **Database**              | Stores configuration, monitoring data, events (MySQL/MariaDB)                                                    |
+| **Centreon Poller**       | Component (local or remote) that runs the checks/plugins; can be distributed for scaling or network segmentation |
+| **Plugins**               | Check scripts (Nagios-compatible) to monitor hosts/services                                                      |
+| **Centreon Plugin Packs** | Curated sets of plugins and templates for quick integration                                                      |
+| **Notifications**         | Alerts via email, SMS, etc.                                                                                      |
+| **API**                   | REST API for automation and integrations                                                                         |
+| **Hosts & Services**      | Definitions of monitored elements and checks                                                                     |
+| **Users/ACL**             | Fine-grained access control and multi-user support                                                               |
+
+
+## Monitoring Architecture Diagram
+
+```txt
+                       ┌─────────────────────────────┐
+                       │      Centreon Admin         │
+                       │   (Web Interface User)      │
+                       └───────────┬─────────────────┘
+                                   │
+                             (Web Browser)
+                                   │
+                       ┌───────────▼───────────────┐
+                       │     Centreon Web UI       │
+                       └───────────┬───────────────┘
+                                   │
+                            (Configuration)
+                                   │
+                       ┌───────────▼───────────────┐
+                       │   Centreon Engine         │
+                       │  (Monitoring Scheduler)   │
+                       └───────────┬───────────────┘
+                                   │
+                       ┌───────────▼───────────────┐
+                       │   Centreon Broker         │
+                       │ (Data/Event Processing)   │
+                       └──┬──────────────┬─────────┘
+                (DB Write)│              │(Data Forward)
+                      ┌───▼──┐       ┌───▼─────────────┐
+                      │Database│     │Remote Centreon  │
+                      │(MySQL/ │     │Poller(s)        │
+                      │MariaDB)│     │ (in branch/DMZ) │
+                      └────┬───┘     └───┬─────────────┘
+                           │             │
+         ┌─────────────────┴───┬─────────┴─────────────────────┐
+         │                     │                               │
+   ┌─────▼───────┐      ┌──────▼──────┐                ┌───────▼─────┐
+   │Linux Host   │      │Windows Host │     ...        │Network      │
+   │(Agent/NRPE) │      │(Agent/NSClient++)           │Devices (SNMP│
+   └─────────────┘      └─────────────┘                │ or Plugin)  │
+         │                     │                       └─────────────┘
+   (Plugins/Checks)    (Plugins/Checks)                     │
+                                                        (SNMP/Agentless)
+
+```
+

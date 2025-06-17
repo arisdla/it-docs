@@ -9,6 +9,52 @@ import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
+## Core structure
+
+| Component      | Role                                                 |
+| -------------- | ---------------------------------------------------- |
+| Nagios Core    | Main process (schedules/runs checks, handles alerts) |
+| Configuration  | Defines what/how/when to monitor                     |
+| Plugins        | Do the actual monitoring                             |
+| Web Interface  | Visualizes status, logs, actions                     |
+| Notifications  | Alerts users to issues                               |
+| Event Handlers | Automate recovery steps                              |
+
+
+## Monitoring Architecture Diagram
+
+```txt
+                               ┌──────────────────────────┐
+                               │      Admin/Operator      │
+                               │  (uses web interface)    │
+                               └───────────┬──────────────┘
+                                           │
+                                   (Web Browser)
+                                           │
+                               ┌───────────▼────────────┐
+                               │   Nagios Core Server   │
+                               │  (Central Monitoring)  │
+                               ├────────────────────────┤
+                               │ Configuration Files    │
+                               │ Plugins                │
+                               │ Notification System    │
+                               │ Event Handlers         │
+                               └───────────┬────────────┘
+                         (Active Checks)   │     (Passive Results)
+                                           │
+             ┌──────────────┬──────────────┼──────────────┬─────────────┐
+             │              │              │              │             │
+   ┌─────────▼──────┐┌──────▼────────┐┌────▼─────┐┌──────▼────────┐┌────▼─────┐
+   │Linux Host 1    ││Windows Host 2 ││Network   ││Remote Location││DMZ Server │
+   │(w/ NRPE agent) ││(w/ NSClient++)││Device    ││with Nagios    ││(Agentless)│
+   │                ││               ││(via SNMP)││Proxy/Satellite││           │
+   └─────┬──────────┘└──────┬────────┘└────┬─────┘└──────┬────────┘└────┬──────┘
+         │                  │              │             │              │
+         │  (NRPE Plugin)   │ (NSClient++) │ (SNMP)      │ (NSCA/NRDP)  │ (Ping/HTTP)
+         └──────────────────┴──────────────┴─────────────┴──────────────┴──────────┘
+
+```
+
 ## TBD
 
 - NRPE Setup for Remote Checks

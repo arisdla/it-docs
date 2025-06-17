@@ -226,7 +226,7 @@ check status and log
 docker ps --filter "name=zabbix"
 ```
 
-### Change Admin pw
+### Change Admin password
 
 Since there is no official environment variable for password, The password for the default `Admin` user is always `zabbix` at first.
 
