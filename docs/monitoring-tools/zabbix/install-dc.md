@@ -5,6 +5,8 @@ sidebar_label: Install w/ Docker Compose
 
 # Install Zabbix with Docker Compose
 
+Currently won't cover for Installing Zabbix from sources or packages, see the official docs instead: [https://www.zabbix.com/documentation/7.0/en/manual/installation/install](https://www.zabbix.com/documentation/7.0/en/manual/installation/install)
+
 Official Docker images:
 
 | Component                                           | Docker repository                                            |
