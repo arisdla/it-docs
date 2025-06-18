@@ -5,6 +5,26 @@ sidebar_label: Install w/ Docker Compose
 
 # Install Zabbix with Docker Compose
 
+Official Docker images:
+
+| Component                                           | Docker repository                                            |      |
+| :-------------------------------------------------- | :----------------------------------------------------------- | ---- |
+| **Zabbix agent**                                    | [zabbix/zabbix-agent](https://hub.docker.com/r/zabbix/zabbix-agent/) |      |
+| **Zabbix server**                                   |                                                              |      |
+| with MySQL support                                  | [zabbix/zabbix-server-mysql](https://hub.docker.com/r/zabbix/zabbix-server-mysql/) |      |
+| with PostgreSQL support                             | [zabbix/zabbix-server-pgsql](https://hub.docker.com/r/zabbix/zabbix-server-pgsql/) |      |
+| **Zabbix web interface**                            |                                                              |      |
+| based on Apache2 web server with MySQL support      | [zabbix/zabbix-web-apache-mysql](https://hub.docker.com/r/zabbix/zabbix-web-apache-mysql/) |      |
+| based on Apache2 web server with PostgreSQL support | [zabbix/zabbix-web-apache-pgsql](https://hub.docker.com/r/zabbix/zabbix-web-apache-pgsql/) |      |
+| based on Nginx web server with MySQL support        | [zabbix/zabbix-web-nginx-mysql](https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql/) |      |
+| based on Nginx web server with PostgreSQL support   | [zabbix/zabbix-web-nginx-pgsql](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql/) |      |
+| **Zabbix proxy**                                    |                                                              |      |
+| with SQLite3 support                                | [zabbix/zabbix-proxy-sqlite3](https://hub.docker.com/r/zabbix/zabbix-proxy-sqlite3/) |      |
+| with MySQL support                                  | [zabbix/zabbix-proxy-mysql](https://hub.docker.com/r/zabbix/zabbix-proxy-mysql/) |      |
+| **Zabbix Java gateway**                             | [zabbix/zabbix-java-gateway](https://hub.docker.com/r/zabbix/zabbix-java-gateway/) |      |
+
+I'm using **alpine** since it's more lightweighted.
+
 ## Prerequisites
 
 ### 1. OS
@@ -133,13 +153,6 @@ sudo ufw status
 
 ## Initial Zabbix
 
-Using images:
-
-- mysql:8.0
-- zabbix/zabbix-server-mysql
-- zabbix/zabbix-web-nginx-mysql
-- zabbix/zabbix-agent
-
 ### Define docker compose
 
 ```bash
@@ -230,9 +243,9 @@ docker ps --filter "name=zabbix"
 
 Since there is no official environment variable for password, The password for the default `Admin` user is always `zabbix` at first.
 
-It's better not expose the zabbix server and web to the outside until the default password is change.
+It's better not expose the zabbix server and web to the outside until the default password has been changed.
 
-#### Change It in the Web UI
+#### Option A: Change It in the Web UI
 
 Make sure only you can access the web:
 
@@ -241,7 +254,7 @@ Make sure only you can access the web:
 - Edit the Admin user.
 - Enter a new password and save.
 
-#### Change It Using SQL
+#### Option B: Change It Using SQL
 
 Advanced, Useful for Automation or Recovery
 
@@ -258,7 +271,7 @@ docker exec -it zabbix-db mysql -u root -p
 USE zabbix;
 ```
 
-**c. Change the Admin password (replace NEWPASS with your new password):**
+**c. Change the Admin password:**
 
 Zabbix 6.x and newer versions **use bcrypt hashing**
 

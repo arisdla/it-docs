@@ -5,6 +5,12 @@ sidebar_label: Install w/ Docker Compose
 
 # Install Nagios with Docker Compose
 
+Using 3rd party image:
+
+- [jasonrivers/nagios](https://hub.docker.com/r/jasonrivers/nagios)
+
+tag during my setup: [tag 4.5.7](https://hub.docker.com/layers/jasonrivers/nagios/4.5.7/images/sha256-2a7c2b20d118baf92b47b69a3901e68dd7664617801b94e560bc4d6564d6ae54)
+
 ## Prerequisites
 
 ### 1. OS
@@ -133,8 +139,6 @@ sudo ufw status
 
 ## Initial Nagios
 
-Using image: [jasonrivers/nagios](https://hub.docker.com/r/jasonrivers/nagios)
-
 ### Define docker compose
 
 ```bash
@@ -143,8 +147,6 @@ mkdir nagios
 cd nagios
 vi docker-compose.yml
 ```
-
-[tag 4.5.7](https://hub.docker.com/layers/jasonrivers/nagios/4.5.7/images/sha256-2a7c2b20d118baf92b47b69a3901e68dd7664617801b94e560bc4d6564d6ae54)
 
 ```yaml title="docker-compose.yml"
 services:
