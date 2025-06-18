@@ -1,8 +1,9 @@
 ---
 sidebar_position: 500
+sidebar_label: Troubleshooting
 ---
 
-# Troubleshooting
+# Troubleshooting Nagios
 
 Check the logs
 

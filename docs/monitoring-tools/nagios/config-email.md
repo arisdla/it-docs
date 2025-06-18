@@ -1,24 +1,26 @@
 ---
 sidebar_position: 30
-sidebar_label: Configure Email
+sidebar_label: Configure Alerts
 ---
 
-# Configure Notifications and Alerts (Email)
+# Configure Nagios Notifications and Alerts
+
+## Configure Email
 
 This example is using `msmtp` to send emails.
 
 More about msmtp: [marlam.de/msmtp/](https://marlam.de/msmtp/)
 
-## Configure the MTA (msmtp)
+### Configure the MTA (msmtp)
 
-### Install `msmtp`
+#### Install `msmtp`
 
 ```bash
 apt-get update
 apt-get install -y msmtp
 ```
 
-### Create or edit the msmtp config file
+#### Create or edit the msmtp config file
 
 Add  SMTP configuration (example):
 
@@ -38,7 +40,7 @@ user           your-email@gmail.com
 password       your-app-password
 ```
 
-### Set permissions
+#### Set permissions
 
 ```bash
 chmod 600 /etc/msmtprc
@@ -50,7 +52,7 @@ chmod 644 /etc/msmtprc
 ls -l /etc/msmtprc
 ```
 
-### Test Email Sending
+#### Test Email Sending
 
 Try sending a test email to verify `msmtp` works:
 
@@ -58,9 +60,9 @@ Try sending a test email to verify `msmtp` works:
 echo "Test email" | msmtp your-email@example.com
 ```
 
-## Configure Nagios
+### Configure Nagios
 
-### Update the notify commands
+#### Update the notify commands
 
 Replace `/bin/mail` or `mail` command with `msmtp`, like:
 
@@ -93,6 +95,6 @@ define command{
 }
 ```
 
-### Restart Nagios
+#### Restart Nagios
 
 verify config changes and restart Nagios

@@ -3,7 +3,7 @@ sidebar_position: 30
 sidebar_label: Configure Alerts
 ---
 
-# Configure Alerts
+# Configure Zabbix Alerts
 
 ## Configure Email
 

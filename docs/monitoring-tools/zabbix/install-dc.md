@@ -7,21 +7,21 @@ sidebar_label: Install w/ Docker Compose
 
 Official Docker images:
 
-| Component                                           | Docker repository                                            |      |
-| :-------------------------------------------------- | :----------------------------------------------------------- | ---- |
-| **Zabbix agent**                                    | [zabbix/zabbix-agent](https://hub.docker.com/r/zabbix/zabbix-agent/) |      |
-| **Zabbix server**                                   |                                                              |      |
-| with MySQL support                                  | [zabbix/zabbix-server-mysql](https://hub.docker.com/r/zabbix/zabbix-server-mysql/) |      |
-| with PostgreSQL support                             | [zabbix/zabbix-server-pgsql](https://hub.docker.com/r/zabbix/zabbix-server-pgsql/) |      |
-| **Zabbix web interface**                            |                                                              |      |
-| based on Apache2 web server with MySQL support      | [zabbix/zabbix-web-apache-mysql](https://hub.docker.com/r/zabbix/zabbix-web-apache-mysql/) |      |
-| based on Apache2 web server with PostgreSQL support | [zabbix/zabbix-web-apache-pgsql](https://hub.docker.com/r/zabbix/zabbix-web-apache-pgsql/) |      |
-| based on Nginx web server with MySQL support        | [zabbix/zabbix-web-nginx-mysql](https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql/) |      |
-| based on Nginx web server with PostgreSQL support   | [zabbix/zabbix-web-nginx-pgsql](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql/) |      |
-| **Zabbix proxy**                                    |                                                              |      |
-| with SQLite3 support                                | [zabbix/zabbix-proxy-sqlite3](https://hub.docker.com/r/zabbix/zabbix-proxy-sqlite3/) |      |
-| with MySQL support                                  | [zabbix/zabbix-proxy-mysql](https://hub.docker.com/r/zabbix/zabbix-proxy-mysql/) |      |
-| **Zabbix Java gateway**                             | [zabbix/zabbix-java-gateway](https://hub.docker.com/r/zabbix/zabbix-java-gateway/) |      |
+| Component                                           | Docker repository                                            |
+| :-------------------------------------------------- | :----------------------------------------------------------- |
+| **Zabbix agent**                                    | [zabbix/zabbix-agent](https://hub.docker.com/r/zabbix/zabbix-agent/) |
+| **Zabbix server**                                   |                                                              |
+| with MySQL support                                  | [zabbix/zabbix-server-mysql](https://hub.docker.com/r/zabbix/zabbix-server-mysql/) |
+| with PostgreSQL support                             | [zabbix/zabbix-server-pgsql](https://hub.docker.com/r/zabbix/zabbix-server-pgsql/) |
+| **Zabbix web interface**                            |                                                              |
+| based on Apache2 web server with MySQL support      | [zabbix/zabbix-web-apache-mysql](https://hub.docker.com/r/zabbix/zabbix-web-apache-mysql/) |
+| based on Apache2 web server with PostgreSQL support | [zabbix/zabbix-web-apache-pgsql](https://hub.docker.com/r/zabbix/zabbix-web-apache-pgsql/) |
+| based on Nginx web server with MySQL support        | [zabbix/zabbix-web-nginx-mysql](https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql/) |
+| based on Nginx web server with PostgreSQL support   | [zabbix/zabbix-web-nginx-pgsql](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql/) |
+| **Zabbix proxy**                                    |                                                              |
+| with SQLite3 support                                | [zabbix/zabbix-proxy-sqlite3](https://hub.docker.com/r/zabbix/zabbix-proxy-sqlite3/) |
+| with MySQL support                                  | [zabbix/zabbix-proxy-mysql](https://hub.docker.com/r/zabbix/zabbix-proxy-mysql/) |
+| **Zabbix Java gateway**                             | [zabbix/zabbix-java-gateway](https://hub.docker.com/r/zabbix/zabbix-java-gateway/) |
 
 I'm using **alpine** since it's more lightweighted.
 
