@@ -11,15 +11,15 @@ Always verify the [official docs](https://www.zabbix.com/documentation)
 
 ## Prerequisites
 
-My env:
+Mine for this doc:
 
 ```bash
-lsb_release -a
-# No LSB modules are available.
-# Distributor ID: Ubuntu
-# Description: Ubuntu 24.04.2 LTS
-# Release: 24.04
-# Codename: noble
+hostnamectl
+#   Virtualization: kvm
+# Operating System: Ubuntu 24.04.2 LTS              
+#           Kernel: Linux 6.8.0-60-generic
+#     Architecture: x86-64
+#   Hardware Model: Compute Instance
 ```
 
 ### smartmontools

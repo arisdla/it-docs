@@ -2,6 +2,8 @@
 sidebar_position: 20
 sidebar_label: Install w/ Docker Compose
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Install Zabbix with Docker Compose
 
@@ -31,7 +33,16 @@ I'm using **alpine** since it's more lightweighted.
 
 ### 1. OS
 
-Ubuntu 24.04
+Mine for this doc:
+
+```bash
+hostnamectl
+#   Virtualization: kvm
+# Operating System: Ubuntu 24.04.2 LTS              
+#           Kernel: Linux 6.8.0-60-generic
+#     Architecture: x86-64
+#   Hardware Model: Compute Instance
+```
 
 #### Update system and change hostname
 
@@ -164,7 +175,15 @@ cd zabbix
 vi docker-compose.yml
 ```
 
-```yaml title="docker-compose.yml"
+Choose a config from the following:
+
+<Tabs>
+  <TabItem value="basic" label="Basic config" default>
+
+- This setup contains basic components to start zabbix: 
+- **zabbix-db**, **zabbix-server**, **zabbix-web** and a **zabbix-agent** for local testing.
+
+```yaml title="docker-compose.yml (basic)"
 services:
   zabbix-db:
     image: mysql:8.0
@@ -194,8 +213,6 @@ services:
       ZBX_SERVER_NAME: "Zabbix Docker"
     depends_on:
       - zabbix-db
-    links:
-      - zabbix-db:mysql
     restart: unless-stopped
   
   zabbix-web:
@@ -228,6 +245,91 @@ services:
 volumes:
   zbx_db_data:
 ```
+
+  </TabItem>
+
+  <TabItem value="with-web-service" label="With Web Service config">
+
+- In addition to the **Basic config**, this setup adds **zabbix-web-service** and corresponding environment configuration..
+- **zabbix-web-service** is for performing various tasks using headless web browser (for example, reporting).
+  
+```yaml title="docker-compose.yml (with web service)"
+services:
+  zabbix-db:
+    image: mysql:8.0
+    container_name: zabbix-db
+    environment:
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
+    volumes:
+      - zbx_db_data:/var/lib/mysql
+    restart: unless-stopped
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:alpine-7.2-latest
+    container_name: zabbix-server
+    environment:
+      DB_SERVER_HOST: zabbix-db
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+      ZBX_SERVER_NAME: "Zabbix Docker"
+      ZBX_STARTREPORTWRITERS: 1
+      ZBX_WEBSERVICEURL: http://zabbix-web-service:10053/report
+    depends_on:
+      - zabbix-db
+    restart: unless-stopped
+  
+  zabbix-web-service:
+    image: zabbix/zabbix-web-service:alpine-7.2-latest
+    container_name: zabbix-web-service
+    environment:
+      ZBX_SERVER_HOST: zabbix-server
+    depends_on:
+      - zabbix-server
+    restart: unless-stopped
+  
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-mysql:alpine-7.2-latest
+    container_name: zabbix-web
+    environment:
+      DB_SERVER_HOST: zabbix-db
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+      ZBX_SERVER_HOST: zabbix-server
+      PHP_TZ: America/New_York
+    depends_on:
+      - zabbix-server
+      - zabbix-db
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-7.2-latest
+    container_name: zabbix-agent
+    environment:
+      ZBX_SERVER_HOST: zabbix-server
+    depends_on:
+      - zabbix-server
+    restart: unless-stopped
+
+volumes:
+  zbx_db_data:
+```
+
+  </TabItem>
+</Tabs>
+
 
 ### Launch container
 
@@ -383,7 +485,7 @@ But this is only needed if you're testing outside Docker or with external Zabbix
 - If the server is running in Docker and has an IP like 127.0.0.1, localhost, or a private/internal Docker network IP (e.g., 172.x.x.x), the geolocation database can’t map it to a real-world location.
 - When it can’t map the IP, it may display something strange like "Rīga."
 
-### Fix it
+### Update locations
 
 - Go to **Data collection → Hosts**.
 - Click on your host (e.g., “Zabbix server”).
@@ -392,3 +494,12 @@ But this is only needed if you're testing outside Docker or with external Zabbix
   - Latitude: `45.5017`
   - Longitude: `-73.5673`
 - Save the changes.
+
+## Update 
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+Note: the zabbix server IP may change after update

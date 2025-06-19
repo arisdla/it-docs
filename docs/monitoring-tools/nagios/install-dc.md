@@ -15,7 +15,16 @@ tag during my setup: [tag 4.5.7](https://hub.docker.com/layers/jasonrivers/nagio
 
 ### 1. OS
 
-Ubuntu 24.04
+Mine for this doc:
+
+```bash
+hostnamectl
+#   Virtualization: kvm
+# Operating System: Ubuntu 24.04.2 LTS              
+#           Kernel: Linux 6.8.0-60-generic
+#     Architecture: x86-64
+#   Hardware Model: Compute Instance
+```
 
 #### Update system and change hostname
 
