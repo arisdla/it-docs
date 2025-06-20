@@ -20,7 +20,7 @@ Type: Email
 SMTP server: (e.g., smtp.gmail.com or your provider’s server)
 SMTP server port: (e.g., 587 for TLS, 465 for SSL)
 SMTP HELO: (usually leave as zabbix-server or your domain)
-SMTP email: (your from email address, e.g., zabbix@yourdomain.com)
+SMTP email: (your from email address, e.g., Zabbix Notifications <zabbix@yourdomain.com>)
 Connection security: (choose STARTTLS for port 587, or SSL/TLS for 465)
 Authentication: Yes
 Username: (your SMTP username)

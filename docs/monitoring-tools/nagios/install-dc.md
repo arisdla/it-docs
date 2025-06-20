@@ -1,9 +1,10 @@
 ---
 sidebar_position: 20
 sidebar_label: Install w/ Docker Compose
+description: Install Nagios Core with Docker Compose
 ---
 
-# Install Nagios with Docker Compose
+# Install Nagios Core with Docker Compose
 
 Using 3rd party image:
 

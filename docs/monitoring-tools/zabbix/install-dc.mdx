@@ -1,6 +1,7 @@
 ---
 sidebar_position: 20
 sidebar_label: Install w/ Docker Compose
+description: Install Zabbix with Docker Compose
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -30,6 +31,12 @@ Official Docker images:
 I'm using **alpine** since it's more lightweighted.
 
 ## Prerequisites
+
+:::info
+
+Even for practicing, start at 2GB RAM. On my test setup (1GB RAM), MySQL container 1GB RAM ate up all the RAM out with the minimum monitoring when I try to open some graphs, then it caused the host to crash.
+
+:::
 
 ### 1. OS
 
@@ -281,7 +288,7 @@ services:
       MYSQL_PASSWORD: zabbix_pass
       MYSQL_ROOT_PASSWORD: root_pass
       ZBX_SERVER_NAME: "Zabbix Docker"
-      ZBX_STARTREPORTWRITERS: 1
+      ZBX_STARTREPORTWRITERS: 1 # possible to enable from 1 to 100 processes.
       ZBX_WEBSERVICEURL: http://zabbix-web-service:10053/report
     depends_on:
       - zabbix-db
