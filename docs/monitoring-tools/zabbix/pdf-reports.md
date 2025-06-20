@@ -5,6 +5,8 @@ sidebar_label: Generate PDF Reports
 
 # Generate Zabbix PDF Reports
 
+![](./assets/zabbix-report.jpg)
+
 ## Prerequisites
 
 ### Component requirements
