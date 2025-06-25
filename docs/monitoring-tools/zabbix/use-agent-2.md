@@ -109,7 +109,11 @@ sudo systemctl restart zabbix-agent2
 
 Here using TLS with Pre-Shared Key (PSK), for other method, consult official docs.
 
+For supported tools and key size limit, check the official docs.
+
 ### a. Generate a PSK on the agent machine
+
+Example to generate a 256-bit (32 bytes) PSK with OpenSSL:
 
 ```bash
 sudo openssl rand -hex 32 | sudo tee /etc/zabbix/zabbix_agent2.psk > /dev/null
@@ -123,6 +127,12 @@ TLSAccept=psk
 TLSPSKIdentity=MyZabbixPSK
 TLSPSKFile=/etc/zabbix/zabbix_agent2.psk
 ```
+
+:::warning
+
+Do not put sensitive information in PSK identity string - it is transmitted over the network unencrypted.
+
+:::
 
 Restart the agent
 
