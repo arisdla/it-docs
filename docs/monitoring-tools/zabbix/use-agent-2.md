@@ -93,7 +93,7 @@ sudo ufw status numbered
 sudo ufw enable
 ```
 
-## Confiture Agent
+## Configure Agent
 
 Check `/etc/zabbix/zabbix_agent2.conf`:
 
