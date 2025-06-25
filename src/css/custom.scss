@@ -13,7 +13,7 @@
   --ifm-color-primary-light: #0864d7;
   --ifm-color-primary-lighter: #0864d7;
   --ifm-color-primary-lightest: #0864d7;
-  --ifm-background-color: #efefef;
+  --ifm-background-color: #f1f1f1;
   --ifm-code-font-size: 95%;
   --ifm-navbar-background-color: #ffffff;
   --ifm-background-surface-color: #ffffff;
@@ -32,7 +32,7 @@
   --ifm-color-primary-light: #2a88fc;
   --ifm-color-primary-lighter: #2a88fc;
   --ifm-color-primary-lightest: #2a88fc;
-  --ifm-background-color: #16141d; 
+  --ifm-background-color: #16141d;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-navbar-background-color: rgb(30, 34, 57);
   --ifm-background-surface-color: rgba(15, 23, 42, 1);
@@ -44,7 +44,8 @@
 :root .navbar {
   backdrop-filter: blur(8px);
   background-color: rgba(255, 255, 255, 0.8);
-  border-bottom: var(--ifm-toc-border-color) solid 0;
+  // border-bottom: var(--ifm-toc-border-color) solid 0;
+  @apply shadow-sm;
 }
 
 :root .navbar.navbar-sidebar--show {
@@ -54,21 +55,12 @@
 [data-theme='dark'] .navbar {
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.7);
-  @apply shadow shadow-slate-500/30;
-}
-@-moz-document url-prefix() {
-  :root .navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-  [data-theme='dark'] .navbar {
-    backdrop-filter: none;
-    background-color: rgba(0, 0, 0, 0.9);
-  }
+  @apply shadow-slate-500/30;
 }
 
 nav.pagination-nav {
   .pagination-nav__link {
-    @apply border-0 bg-black/[0.05] hover:bg-black/[0.1] rounded-xl;
+    @apply border-0 bg-white/50 hover:bg-white rounded-xl;
   }
 
   & .pagination-nav__sublabel,
@@ -84,9 +76,11 @@ nav.pagination-nav {
   & .pagination-nav__label::after {
     content: '' !important;
   }
+
   & a.pagination-nav__link--prev .pagination-nav__sublabel::before {
     content: '◀ ' !important;
   }
+
   & a.pagination-nav__link--next .pagination-nav__sublabel::after {
     content: ' ▶' !important;
   }
@@ -94,38 +88,44 @@ nav.pagination-nav {
 
 [data-theme='dark'] nav.pagination-nav {
   .pagination-nav__link {
-    @apply bg-white/10 hover:bg-white/[0.15];
+    @apply bg-white/10 hover:bg-white/20;
   }
 }
 
 article .markdown {
   img {
-    @apply place-self-center self-center justify-self-center;
+    @apply block place-self-center self-center justify-self-center;
     max-height: 60vh;
     width: auto;
   }
+
   iframe {
     @apply w-full aspect-video mb-2;
   }
+
   & img,
   & iframe {
     @apply rounded-xl;
   }
+
+  a.card, .theme-code-block {
+    box-shadow: none;
+  }
 }
 
 article .markdown {
-  & iframe[src^="https://www.youtube.com/embed/"]
-  {
+  & iframe[src^="https://www.youtube.com/embed/"] {
     @apply aspect-video;
   }
 }
 
 article .markdown {
+
   & iframe[src^="https://www.youtube.com/embed/"],
-  & iframe[src^="https://youtube.com/embed/"]
-  {
+  & iframe[src^="https://youtube.com/embed/"] {
     @apply bg-slate-500/20 mx-auto w-full lg:max-w-2xl;
   }
+
   img {
     @apply mx-auto;
   }

@@ -72,6 +72,17 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
+    async function tailwindPlugin(context, options) {
+    return {
+      name: 'docusaurus-tailwindcss',
+      configurePostCss(postcssOptions) {
+        // Appends TailwindCSS and AutoPrefixer.
+        postcssOptions.plugins.push(require('tailwindcss'))
+        postcssOptions.plugins.push(require('autoprefixer'))
+        return postcssOptions
+      },
+    }
+  },
   ],
 
   themeConfig: {
@@ -111,7 +122,7 @@ const config: Config = {
       copyright: `${new Date().getFullYear()} IT Docs by aris.la. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
+      theme: prismThemes.vsLight,
       darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'yaml', 'json', 'docker', 'powershell'],
     },
