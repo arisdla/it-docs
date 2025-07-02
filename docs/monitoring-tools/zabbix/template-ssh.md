@@ -55,7 +55,7 @@ Find the template in the list:
 - Choose **Create trigger**:
   - **Name**: `SSH is DOWN on {HOST.NAME}`
   - **Severity**: e.g. “High”
-  - **Expression**: `min(/SSH Monitoring/net.tcp.service[ssh],3m)=0` 👈 This means: “Alert if, in the last 3 minutes, the minimum value is 0 (SSH was down for all three checks).”
+  - **Expression**: `sum(/SSH Monitoring/net.tcp.service[ssh],#3)=0` 👈 This means: “Alert if, sum of the last 3 data is 0 (SSH was down for all three checks).”
   - **Key**: `net.tcp.service[ssh]`
   - **Add**
 
