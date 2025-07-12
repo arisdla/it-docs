@@ -218,6 +218,8 @@ services:
       MYSQL_PASSWORD: zabbix_pass
       MYSQL_ROOT_PASSWORD: root_pass
       ZBX_SERVER_NAME: "Zabbix Docker"
+      ZBX_NODEADDRESS:    "zabbix-server"
+      ZBX_NODEADDRESSPORT: "10051"
     depends_on:
       - zabbix-db
     restart: unless-stopped
@@ -290,6 +292,8 @@ services:
       ZBX_SERVER_NAME: "Zabbix Docker"
       ZBX_STARTREPORTWRITERS: 1 # possible to enable from 1 to 100 processes.
       ZBX_WEBSERVICEURL: http://zabbix-web-service:10053/report
+      ZBX_NODEADDRESS:    "zabbix-server"
+      ZBX_NODEADDRESSPORT: "10051"
     depends_on:
       - zabbix-db
     restart: unless-stopped
