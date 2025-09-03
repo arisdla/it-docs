@@ -25,7 +25,8 @@ export type TagType =
   | "email"
   | "apps"
   | "mac"
-  | "paid";
+  | "paid"
+  | "organization";
 
 // Add sites to this list
 // prettier-ignore
@@ -36,6 +37,20 @@ const Resources: Resource[] = [
     website: 'https://apps.apple.com/us/app/amphetamine/id937984704',
     source: '',
     tags: ['apps', 'mac'],
+  },
+  {
+    title: "CISO Executive Network",
+    description: 'Peer networking group for Chief Information Security Officers and other security executives.',
+    website: 'https://www.cisoexecnet.com/',
+    source: '',
+    tags: ['organization', 'cybersecurity'],
+  },
+  {
+    title: "CSA - Cloud Security Alliance",
+    description: 'Global organization dedicated to defining and raising awareness of best practices to help ensure a secure cloud computing environment.',
+    website: 'https://cloudsecurityalliance.org/',
+    source: '',
+    tags: ['organization', 'cybersecurity'],
   },
   {
     title: "CSO Online",
@@ -53,7 +68,7 @@ const Resources: Resource[] = [
   },
   {
     title: "HiddenMe",
-    description: 'Hide desktop icons on your Mac. 💰 Paid version available.',
+    description: 'Hide desktop icons on your Mac.',
     website: 'https://apps.apple.com/us/app/hiddenme/id467040476',
     source: '',
     tags: ['apps', 'mac', 'paid'],
@@ -108,6 +123,13 @@ const Resources: Resource[] = [
     tags: ['apps', 'mac', 'paid'],
   },
   {
+    title: "NCSA - National Cyber Security Alliance",
+    description: 'Nonprofit organization promoting cybersecurity awareness and education for individuals and businesses.',
+    website: 'https://staysafeonline.org/',
+    source: '',
+    tags: ['organization', 'cybersecurity'],
+  },
+  {
     title: "OnyX",
     description: 'Mac maintenance and optimization tool.',
     website: 'https://www.titanium-software.fr/en/onyx.html',
@@ -137,7 +159,7 @@ const Resources: Resource[] = [
   },
   {
     title: "Tailscale",
-    description: 'Zero-config VPN for secure networks, available for Mac.',
+    description: 'Zero-config VPN for secure networks.',
     website: 'https://tailscale.com/',
     source: '',
     tags: ['apps', 'mac'],
@@ -157,6 +179,7 @@ const Resources: Resource[] = [
     tags: ['cybersecurity'],
   },
 ];
+
 
 export type Resource = {
   title: string;
@@ -231,6 +254,14 @@ export const Tags: { [type in TagType]: Tag } = {
     }),
     color: "#eab308",
   },
+    organization: {
+      label: translate({ message: "Organization" }),
+      description: translate({
+        message: "Organization.",
+        id: "showcase.tag.organization.description",
+      }),
+      color: "#7c3aed",
+    },
 };
 
 export const TagList = Object.keys(Tags) as TagType[];
