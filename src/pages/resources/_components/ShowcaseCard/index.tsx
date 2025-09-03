@@ -3,6 +3,9 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * Modifications copyright (c) 2025 Arthur / github.com/arisdla.
+ * Changes: adaption for personal use.
  */
 
 import React from 'react';
