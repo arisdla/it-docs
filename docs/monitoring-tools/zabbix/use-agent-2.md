@@ -1,6 +1,7 @@
-
+---
 sidebar_position: 120
-sidebar_label: Zabbix Agent 
+sidebar_label: Zabbix Agent
+---
 
 # Install & Configure Zabbix Agent 2
 
