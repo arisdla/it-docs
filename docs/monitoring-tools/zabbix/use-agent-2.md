@@ -1,7 +1,6 @@
----
+
 sidebar_position: 120
-sidebar_label: Zabbix Agent 2
----
+sidebar_label: Zabbix Agent 
 
 # Install & Configure Zabbix Agent 2
 
@@ -203,4 +202,190 @@ For debugging, check zabbix agent log:
 
 ```bash
 sudo tail -f /var/log/zabbix/zabbix_agent2.log
+```
+
+## Uninstall Zabbix Agent 2
+
+To **safely remove `zabbix-agent2`** and ensure it’s **not starting automatically**, follow these steps in order.
+
+### 1. Stop the service (if running)
+
+```
+sudo systemctl stop zabbix-agent2
+```
+
+(Optional check)
+
+```
+systemctl status zabbix-agent2
+```
+
+### 2. Disable autostart
+
+This removes it from system boot completely.
+
+```
+sudo systemctl disable zabbix-agent2
+```
+
+(Optional verify)
+
+```
+systemctl is-enabled zabbix-agent2
+```
+
+Expected output:
+
+```
+disabled
+```
+
+### 3. Remove the package
+
+#### Normal removal (keeps config files)
+
+```
+sudo apt remove zabbix-agent2
+```
+
+#### **Full clean removal (recommended)**
+
+Removes the package **and** configuration files.
+
+```
+sudo apt purge zabbix-agent2
+```
+
+### 4. Remove unused dependencies
+
+```
+sudo apt autoremove --purge
+```
+
+### 5. Verify it’s gone
+
+#### Package check
+
+```
+dpkg -l | grep zabbix
+```
+
+#### Service check
+
+```
+systemctl list-unit-files | grep zabbix
+```
+
+Both should return **nothing**.
+
+### 6. (Optional) Remove leftover directories
+
+Only do this if you’re sure you won’t reinstall Zabbix.
+
+```
+sudo rm -rf /etc/zabbix
+sudo rm -rf /var/log/zabbix
+sudo rm -rf /var/run/zabbix
+```
+
+### One-command clean uninstall (summary)
+
+```
+sudo systemctl stop zabbix-agent2 && \
+sudo systemctl disable zabbix-agent2 && \
+sudo apt purge -y zabbix-agent2 && \
+sudo apt autoremove --purge -y
+```
+
+## Uninstall Zabbix Agent 2
+
+To **safely remove `zabbix-agent2`** and ensure it’s **not starting automatically**, follow these steps in order.
+
+### 1. Stop the service (if running)
+
+```
+sudo systemctl stop zabbix-agent2
+```
+
+(Optional check)
+
+```
+systemctl status zabbix-agent2
+```
+
+### 2. Disable autostart
+
+This removes it from system boot completely.
+
+```
+sudo systemctl disable zabbix-agent2
+```
+
+(Optional verify)
+
+```
+systemctl is-enabled zabbix-agent2
+```
+
+Expected output:
+
+```
+disabled
+```
+
+### 3. Remove the package
+
+#### Normal removal (keeps config files)
+
+```
+sudo apt remove zabbix-agent2
+```
+
+#### **Full clean removal (recommended)**
+
+Removes the package **and** configuration files.
+
+```
+sudo apt purge zabbix-agent2
+```
+
+### 4. Remove unused dependencies
+
+```
+sudo apt autoremove --purge
+```
+
+### 5. Verify it’s gone
+
+#### Package check
+
+```
+dpkg -l | grep zabbix
+```
+
+#### Service check
+
+```
+systemctl list-unit-files | grep zabbix
+```
+
+Both should return **nothing**.
+
+### 6. (Optional) Remove leftover directories
+
+Only do this if you’re sure you won’t reinstall Zabbix.
+
+```
+sudo rm -rf /etc/zabbix
+sudo rm -rf /var/log/zabbix
+sudo rm -rf /var/run/zabbix
+```
+
+### One-command clean uninstall (summary)
+
+```
+sudo systemctl stop zabbix-agent2 && \
+sudo systemctl disable zabbix-agent2 && \
+sudo apt purge -y zabbix-agent2 && \
+sudo apt autoremove --purge -y
 ```
